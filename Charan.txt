@@ -1,0 +1,195 @@
+import java.util.*;
+class Details{
+    int rollnumber, fee, yearOfStudy;
+    long aadharnumber;
+    String name, DOB, gender, address;
+
+    public Details(int id, String name, String gender, Long aadharnumber, String DOB, int fee, int yearOfStudy, String address){
+        this.rollnumber = rollnumber;
+        this.name = name;
+        this.gender = gender;
+        this.aadharnumber = aadharnumber;
+        this.DOB = DOB;
+        this.fee = fee;
+        this.yearOfStudy = yearOfStudy;
+        this.address = address;
+    }
+}
+
+
+class Sdnt{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        ArrayList <Details> sdnt = new ArrayList<Details>();
+        int rollnumber, fee, yearOfStudy,s_rn,count = 0,co;
+        long aadharnumber;
+        String name, DOB, gender, address;
+        boolean f = true;
+        
+        System.out.println("Menu");
+
+        System.out.println("1. Add Student Details\n2. View Single Student Details\n3. View All Student Details\n4. Update Student Details\n5. Delete Student Details\n6. exit");
+
+        while(f){
+            System.out.print("Enter your choice : ");
+            int n = sc.nextInt();
+            boolean flag = false;
+            switch(n){
+                case 1 :
+                    System.out.println("Enter the details\n");
+                    System.out.print("Enter Rollnumber : ");
+                    rollnumber = sc.nextInt();
+
+                    System.out.print("Enter Name : ");
+                    name = sc.next();
+
+                    System.out.print("Enter Gender (M/F/O) : ");
+                    gender = sc.next();
+
+                    System.out.print("Enter Aadhar number : ");
+                    aadharnumber = sc.nextLong();
+
+                    System.out.print("Enter DOB(DD/MM/YYYY) : ");
+                    DOB = sc.next();
+
+                    System.out.print("Enter Fees : ");
+                    fee = sc.nextInt();
+
+                    System.out.print("Enter the Year Of Study : ");
+                    yearOfStudy = sc.nextInt();
+
+                    System.out.print("Enter the address : ");
+                    address = sc.next();
+
+                    sdnt.add(new Details(rollnumber, name, gender, aadharnumber, DOB, fee, yearOfStudy, address));
+
+                    count++;
+                    System.out.println("Student Details added sucessfully !");
+                    break;
+
+                case 2 :
+                    
+                    System.out.print("Enter the Roll number : ");
+                    s_rn = sc.nextInt();
+                    System.out.println("____________");
+                    System.out.println("|ROLLNUMBER\t|NAME\t|GENDER\t|AADHAR NUMBER\t|DOB\t\t|FEE\t|STUDY\t|ADDRESS\t|");
+                    System.out.println("____________");
+                    for(Details d : sdnt){
+                        if(s_rn == d.rollnumber){
+                            System.out.println("|"+d.rollnumber+"\t|"+d.name+"\t|"+d.gender+"\t|"+d.aadharnumber+"\t|"+d.DOB+"\t|"+d.fee+"\t|"+d.yearOfStudy+"\t\t|"+d.address+"\t\t|");
+                            System.out.println("____________");
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if(!flag){
+                        System.out.println("Incorrect ROLL NUMBER, PLEASE ENTER CORRECT ROLL NUMBER ");
+                    }
+                    break;
+
+                case 3 :
+                    System.out.println("The List of the students are : ");
+                    System.out.println("____________");
+                    System.out.println("|ROLLNUMBER\t|NAME\t|GENDER\t|AADHAR NUMBER\t|DOB\t\t|FEE\t|STUDY\t|ADDRESS\t|");
+                    System.out.println("____________");
+                    for(Details d : sdnt){
+                        System.out.println("|"+d.rollnumber+
+							"\t|"+d.name+
+							 "\t|"+d.gender+
+							 "\t|"+d.aadharnumber+
+							 "\t|"+d.DOB+
+							 "\t|"+d.fee+	
+							 "\t|"+d.yearOfStudy+
+							 "\t\t|"+d.address+"\t\t|");
+                        System.out.println("____________");
+                    }
+                    break;
+
+                case 4 :
+                    System.out.println("Enter the Student Roll number : ");
+                    s_rn = sc.nextInt();
+
+                    for(Details d : sdnt){
+                        if(s_rn == d.rollnumber){
+                            System.out.println("Menu");
+                            System.out.println("1.Name\n2.Gender\n3.Aadhar Number\n4.DOB\n5.Fee\n6.Years Of Study\7.Address");
+                            System.out.print("Enter the option that you want to edit : ");
+                            int opt = sc.nextInt();
+                            String a;
+                            int b;
+                            long c;
+                            switch(opt){
+                                case 1:
+                                    System.out.print("Enter the updated name : ");
+                                    a = sc.next();
+                                    d.name = a;
+                                    break;
+                                case 2:
+                                    System.out.print("Enter the updated Gender : ");
+                                    a = sc.next();
+                                    d.gender = a;
+                                    break;
+                                case 3:
+                                    System.out.print("Enter the updated Aadhar number : ");
+                                    c = sc.nextLong();
+                                    d.aadharnumber = c;
+                                    break;
+                                case 4:
+                                    System.out.print("Enter the updated DOB : ");
+                                    a = sc.next();
+                                    d.DOB = a;
+                                    break;
+                                case 5:
+                                    System.out.print("Enter the updated Fee : ");
+                                    b = sc.nextInt();
+                                    d.fee = b;
+                                    break;
+                                case 6:
+                                    System.out.print("Enter the updated Years of Study : ");
+                                    b = sc.nextInt();
+                                    d.yearOfStudy = b;
+                                    break;
+                                case 7:
+                                    System.out.print("Enter the updated Address : ");
+                                    a = sc.next();
+                                    d.address = a;
+                                    break;
+                            }
+                            flag = true;
+                            break;
+                        }
+                        
+                    }
+                    if(!flag){
+                        System.out.println("Incorrect Roll number, PLEASE ENTER CORRECT ROLL NUMBER ");
+                    }
+                    break;
+
+                case 5 :
+                    System.out.print("Enter the Student roll number to be deleted : ");
+                    s_rn = sc.nextInt();
+                    co = 0;
+                    for(Details d : sdnt){
+                        if(s_rn == d.rollnumber ){
+                            sdnt.remove(d);
+                            count--;
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if(!flag){
+                        System.out.println("Incorrect Roll number, PLEASE ENTER CORRECT ROLL NUMBER ");
+                    }else{
+                        System.out.println("Student Details deleted successfully");
+                    }
+                    break;
+
+                case 6 :
+                    f = false;
+                    break;
+                default:
+                    System.out.println("Enter the correct option from the menu");
+            }
+        }
+    }
+}
